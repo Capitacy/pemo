@@ -1,0 +1,8 @@
+{
+  "name": "pemo",
+  "version": "0.0.1",
+  "description": "login credentials manager",
+  "main": "app.js",
+  "author": "Oshan Shrestha",
+  "license": "UNLICENSED"
+}
