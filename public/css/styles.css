@@ -1,0 +1,41 @@
+/*nav ul li {
+    margin-top: 40px;
+    padding: 0px 30px;
+    margin-bottom: 20px;
+}*/
+a {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    transition: 0.35s ease;    
+}
+a:hover {
+    text-decoration: none;
+    color: #888;
+}
+
+
+.app {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.row {
+    margin: 0;
+}
+.form-holder {
+    max-width: 400px;
+    margin: 0px auto;
+    padding: 30px;
+}
+.form-holder h3 {
+    padding: 30px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.form-group label {
+    font-size: 18px;
+}
+.btn {
+    padding: 10px 20px;
+    background: #0000;
+}

@@ -4,5 +4,11 @@
   "description": "login credentials manager",
   "main": "app.js",
   "author": "Oshan Shrestha",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "mustache-express": "^1.2.6"
+  }
 }

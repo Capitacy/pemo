@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <% if (username) { %>
+        <title><%= username %> - PEMO</title>
+    <% } else { %>
+        <title>PEMO</title>
+    <% } %>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" type="text/css" media="screen" href="static/css/styles.css" />
+
+
+    <!-- Custom Javascript -->
+    <script src="static/js/core.js"></script>
+</head>
+<body>
+    <!-- <nav>
+        <ul class="nav justify-content-center">
+            <li><a href="#login">Login</a></li>
+            <li><a href="#register">Register</a></li>
+        </ul>
+    </nav> -->
+
+
+    <div class="app">
+        <% if (!username) { %>
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 form-holder">
+                <h3>Login</h3>
+                <form id="login">
+                    <div class="form-group">
+                        <label for="login_username">Username</label>
+                        <input type="text" id="login_username" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="login_password">Password</label>
+                        <input type="password" id="login_password" class="form-control">
+                    </div>
+                    <button type="submit" class="btn border border-success login_submit">Login</button>
+                </form>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 form-holder">
+                <h3>Register</h3>
+                <form id="register">
+                    <div class="form-group">
+                        <label class="text-align-right" for="register_username">Username</label>
+                        <input type="text" id="register_username" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-align-right" for="register_password">Password</label>
+                        <input type="password" id="register_password" class="form-control">
+                    </div>
+                    <button type="submit" class="btn border border-primary register_submit">Register</button>
+                </form>
+            </div>
+        </div>
+        <% } else { %>
+            <h3>Successfully logged in as <%= username %>.</h3>
+        <% } %>
+    </div>
+</body>
+</html>
