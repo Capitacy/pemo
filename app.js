@@ -35,10 +35,9 @@ server.get("/:username", function(req, res) {
 
 
 server.post('/userRegistration', function(req, res) {
-    // console.log(req.body)
-    // res.send(req.body)
+    console.log(req.body)
 
-    _handler.registerHandler(req.body.username, req.body.password, function(err, secretData) {
+    _handler.registerHandler(req.body.username, req.body.password, req.body.confirmPassword, function(err, secretData) {
         if (!err) {
             res.send({
                 error: false,
@@ -54,8 +53,22 @@ server.post('/userRegistration', function(req, res) {
 })
 
 server.post('/loginRequest', function(req, res) {
-    console.log(req.body)
-    res.send(200)
+
+
+    _handler.loginHandler(req.body.username, req.body.password, function(err, secretData) {
+        if (!err) {
+            res.send({
+                error: false,
+                token: secretData
+            })
+        } else {
+            res.send({
+                error: _helper.determineError(err)
+            })
+        }
+    })
+    
+    
 })
 
 
