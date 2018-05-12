@@ -43,14 +43,22 @@ var helpers = {
             113: "Password is not confirmed.",
             114: "Password should be at least 8 characters long.",
 
-
             119: "Missing required field(s).",
 
 
             201: "File not found.",
             202: "Error creating file.",
             203: "Error updating file",
-            204: "Error reading file."
+            204: "Error reading file.",
+
+            301: 'Token does not exist.',
+            302: 'Token expired.',
+            303: "Token should be the length of 140 characters.",
+            304: 'Token is empty.',
+
+
+
+            401: 'Internal processing error. Retry again.'
         }
 
 

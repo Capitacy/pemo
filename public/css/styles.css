@@ -39,3 +39,13 @@ a:hover {
     padding: 10px 20px;
     background: #0000;
 }
+
+
+
+.error_message {
+    max-width: 700px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 30px;
+    font-family: 'Montserrat', sans-serif;
+}

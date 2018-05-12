@@ -30,7 +30,23 @@ server.get("/", function(req, res) {
     res.render("index", {username: "",users: []})
 })
 server.get("/:username", function(req, res) {
-    res.render("index", {username: req.params.username, users: []})
+
+    _handler.authorizedLogin(req.params.username, req.query.token, function(err, data) {
+        if (!err) {
+            res.render('authorizedLogin', {
+                title: req.params.username,
+                error: false,
+                userData: data
+            })
+        } else {
+            res.render('authorizedLogin', {
+                title: req.params.username,
+                error: _helper.determineError(err)
+            })
+        }
+    })
+
+    console.log(`Username: ${req.params.username}\nToken: ${JSON.stringify(req.query.token)}`)
 })
 
 
@@ -52,7 +68,12 @@ server.post('/userRegistration', function(req, res) {
     
 })
 
+
+
 server.post('/loginRequest', function(req, res) {
+
+
+    console.log(req.headers)
 
 
     _handler.loginHandler(req.body.username, req.body.password, function(err, secretData) {

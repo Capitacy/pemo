@@ -21,6 +21,7 @@ var reqHandler = {
                                         username: username,
                                         password: _helpers.hash(_helpers.hash(password)),
                                         secret: _helpers.createRandomString(140),
+                                        tokenExpiration: Date.now() + 1000 * 60 *5, // 5 minutes
                                         contents: []
                                     }
                                     // create new file for new user and store their data
@@ -66,7 +67,18 @@ var reqHandler = {
                         _data.read('users', username, function(err, data) {
                             if (!err) {
                                 if (data.password === _helpers.hash(_helpers.hash(password))) {
-                                    callback(false, data.secret)
+                                    data.tokenExpiration += Date.now() + 1000 * 60 * 5 // Extend token for next five minutes
+                                    data.secret = _helpers.createRandomString(140) // Generate new token string
+
+                                    // Store new userData to user's file
+                                    _data.update('users', data.username, data, function(err) {
+                                        if (!err) {
+                                            callback(false, data.secret)
+                                        } else {
+                                            callback()
+                                        }
+                                    })
+                                    
                                 } else {
                                     callback(111)
                                 }
@@ -88,7 +100,52 @@ var reqHandler = {
         } else {
             callback(119)
         }
+    },
+
+    authorizedLogin: function(username, token, callback) {
+        username: typeof(username) == 'string' && username.length > 0 ? username : false
+        token = typeof(token) == 'string' && token.length !== 0 ? token : false
+
+        if  (username && token) {
+            if (username.length >= 4) {
+                if (username.length <= 20) {
+                    if (token.length > 0) {
+                        if (token.length == 140) {
+
+                            _data.read('users', _helpers.hash(username), function(err, data){
+                                if (!err) {
+                                    if (data.secret == token) {
+                                        if (data.tokenExpiration >= Date.now()) {
+                                            callback(false, data.contents)
+                                        } else {
+                                            callback(302)
+                                        }
+                                    } else {
+                                        callback(301)
+                                    }
+                                } else {
+                                    callback(102)
+                                }
+                            })
+                            
+                        } else {
+                            callback(303)
+                        }
+                    } else {
+                        callback(304)
+                    }
+                } else {
+                    callback(105)
+                }
+            } else {
+                callback(103)
+            }
+        } else {
+            callback(119)
+        }
+
     }
+    
 }
 
 
